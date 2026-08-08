@@ -1,0 +1,14 @@
+# Compiled objects and binaries
+obj/
+bin/
+*.o
+*.exe
+
+# Code::Blocks local IDE state (window layout, dependency cache)
+*.layout
+*.depend
+
+# Uncomment if you don't want to track the runtime data files
+# (they get overwritten every time the program runs)
+# users.txt
+# books.txt
