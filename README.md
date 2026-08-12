@@ -5,17 +5,27 @@ A console-based Library Management System built in C++, using plain structs, glo
 ## Features
 
 **User side**
-- Register a new account or log in with an existing User ID
+- Register a new account (auto-assigned User ID, e.g. `U006`) with a 4-digit PIN
+- Log in with User ID + PIN
 - Recover a forgotten User ID via registered phone number
 - Borrow an available book
 - Return a borrowed book (with automatic late fines)
 - List all currently available books
+- Search books by title or author keyword (case-insensitive, partial match)
+- View your own borrow history (past and current borrows)
+- Automatic alert on login if you have an overdue book or an unpaid fine
 
 **Admin side**
 - Add or remove books from the catalog (removal is blocked while a book is checked out)
 - List all books and all registered users
 - Suspend / unsuspend a user's account
 - Clear a user's outstanding fine
+- View any user's full borrow history
+
+**Account security**
+- Every account is protected by a 4-digit PIN set at registration
+- 3 incorrect PIN attempts in a row automatically suspends the account (admin can unsuspend it)
+- A suspended account can't log in at all, not just borrow
 
 **Late fines**
 
@@ -29,7 +39,7 @@ Books are due back within 7 days of borrowing:
 
 ## Data persistence
 
-All user and book records are saved to `users.txt` and `books.txt` in a simple pipe-delimited (`|`) format, and reloaded automatically on startup — no database required.
+Records are saved to `users.txt`, `books.txt`, and `history.txt` in a simple pipe-delimited (`|`) format, and reloaded automatically on startup — no database required.
 
 ## Getting started
 
@@ -42,9 +52,9 @@ g++ -std=c++11 -o library_system main.cpp
 ./library_system
 ```
 
-### Admin login (demo)
-- Username: `admin`
-- Password: `admin123`
+### Demo logins
+- Admin — Username: `admin`, Password: `admin123`
+- Sample users (U001–U005) — PIN: `1234`
 
 ## Project structure
 ```
@@ -52,14 +62,15 @@ g++ -std=c++11 -o library_system main.cpp
 ├── main.cbp      # Code::Blocks project file
 ├── users.txt     # Sample/seed user data
 ├── books.txt     # Sample/seed book data
+├── history.txt   # Sample/seed borrow history
 └── .gitignore
 ```
 
 ## Limitations
 
-- Fixed capacity: up to 100 users and 50 books (defined via `MAX_USERS` / `MAX_BOOKS`)
+- Fixed capacity: up to 100 users, 50 books, and 500 history records (`MAX_USERS` / `MAX_BOOKS` / `MAX_HISTORY`)
 - Single admin account with a hardcoded username/password, meant for demo purposes only
-- No password hashing or encryption on stored data
+- PINs and the admin password are stored in plain text, not hashed — fine for a class project, not for real use
 
 ## License
 
