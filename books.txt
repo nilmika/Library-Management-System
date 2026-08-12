@@ -1,5 +1,5 @@
 Harry Potter|J.K. Rowling|0
 The Hobbit|J.R.R. Tolkien|1
-Lord of the Rings|J.R.R. Tolkien|0
+Lord of the Rings|J.R.R. Tolkien|1
 Pride and Prejudice|Jane Austen|1
 1984|George Orwell|1
